@@ -1,4 +1,5 @@
-// mvp
+//using fetch instead of $.ajax()
+// using promise.all
 
 let teamStats = [];
 let teamInfo = [];
@@ -35,21 +36,22 @@ function getPromises(url, url2, settings, normalizeResponse) {
   let promiseKeeper = [];
   promiseKeeper.push(promise1);
   promiseKeeper.push(promise2);
+
   Promise.all(promiseKeeper)
   .then(function(valuesArray){
-    let newArray = [];
+    let jsonifiedArray = [];
     for (i = 0; i< valuesArray.length; i++){
-      newArray.push(valuesArray[i].json());
+      jsonifiedArray.push(valuesArray[i].json());
     }
-    return Promise.all(newArray);
+    return Promise.all(jsonifiedArray);
   })
   .then(function(jsonResponseArray){
     let teamStats = jsonResponseArray[0];
     let teamInfo = jsonResponseArray[1];
     let projectedWins = getTeamWins(teamStats, normalizeResponse);
     let teamName = getTeamName(teamStats, normalizeResponse);
-    let displayResults = updateTable(projectedWins, teamName);
     let logo = getLogo(teamInfo, normalizeResponse);
+    let displayResults = updateTable(projectedWins, teamName, logo);
   })
 }
 
@@ -125,22 +127,35 @@ function getLogo(teamInfo, normalizeResponse) {
 }
 
 //displays projected results to user using a table
-function updateTable(projectedWins, teamName) {
+function updateTable(projectedWins, teamName, teamLogo) {
   let selectRow = document.createElement('tr');
   let selectRow2 = document.createElement('tr');
   let selectRow3 = document.createElement('tr');
   let selectRow4 = document.createElement('tr');
   let showName = document.createElement('td');
+  let showPic = document.createElement('td');
   let selectCell = document.createElement('td');
   let showOutcome = document.createElement('td');
   let showBuyChoice = document.createElement('td');
   let purchase = buyTickets(projectedWins);
   let playoffs = seasonOutcome(projectedWins);
   showName.innerText = teamName;
+  showName.width = "400";
+
+  // adjust image
+  let teamImageContainer = document.createElement("div");
+  let teamImage = document.createElement("img");
+  teamImage.src= teamLogo ;
+  teamImage.width = "300";
+  teamImage.height = "300";
+  teamImageContainer.appendChild(teamImage);
+  showPic.appendChild(teamImageContainer);
+  //populate table
   selectCell.innerText = "The projected team wins for next season is: " + projectedWins; //refers to name in eventListener
   showOutcome.innerText = "The projected season outcome is: " + playoffs;
   showBuyChoice.innerText = "Should you buy tickets:  " + purchase;
   selectRow.appendChild(showName);
+  selectRow.appendChild(showPic);
   selectRow2.appendChild(selectCell);
   selectRow3.appendChild(showOutcome);
   selectRow4.appendChild(showBuyChoice);
@@ -261,6 +276,3 @@ function modifyUserResponse(userResponse) {
   };
   return lookUp[userResponse];
 }
-
-//using fetch instead of $.ajax()
-// using promise.all
