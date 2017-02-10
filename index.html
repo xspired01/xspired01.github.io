@@ -11,8 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- local css file -->
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <!-- google font -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:900" rel="stylesheet">
+
 </head>
+
 <body class="#e3f2fd blue lighten-5">
+
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -22,17 +28,21 @@
     </div>
     <h1 class="header center text-#d50000 red accent-4"> NFL Team Win Projector</h1>
     <div class="row center">
-      <h4 class="header col s12 grey-text text-lighten-4">Want to Predict the Future?</h4>
+      <h4 class="center header col s12 grey-text text-lighten-4">Want to Predict the Future?</h4>
+
       <div class="row center">
-        <p class="col s12 m12 grey-text text-lighten-4">Want to know how your team will do next season? Should you buy tickets? This handy web application will
+          <p class="col s12 m3 grey-text text-lighten-4"></p>
+        <p class="center col s12 m6 grey-text text-lighten-4">Want to know how your team will do next season? Should you buy tickets? This handy web application will
           show you how well your team will do next year and whether you should buy tickets? Enter team name or location
           and hit enter.
-        </p>
-        <p class="col s12 m12 grey-text text-lighten-4">The predictions are based on Bill James' creation of the
+          The predictions are based on Bill James' creation of the
           Pythagorean Theorem of Baseball. Instead of using distance, this theorem points scored and points allowed are used to calculate
           a team's baseline winning percentage and multiplying by the number of games.
         </p>
+          <p class="col s12 m1 grey-text text-lighten-4">
+        </p>
       </div>
+
     </div>
   </header>
 
@@ -44,7 +54,8 @@
         <div class="col offset-s2 s7">
           <!-- needed for col offset-->
           <div class="input-field">
-            <input type="text" id="search" name="search" placeholder="Enter team by name e.g. Raiders or Oakland"  required/>
+            <input type="text" id="search" name="search" placeholder="Enter team by name e.g. Raiders or Oakland"
+             required />
           </div>
         </div>
         <div class="col s3">  <!-- button -->
@@ -55,13 +66,16 @@
         </div> <!-- end button -->
       </form> <!-- end of form field -->
     </div>  <!-- end of row -->
+
     <div class="row">
+
     <table class="bordered">
       <tbody id="table">
       </tbody>
     </table>
+
     </div>
-  </div>  <!-- end of row class -->
+  </div>
 </main>
 
 <footer class="page-footer blue">  <!-- begin footer -->

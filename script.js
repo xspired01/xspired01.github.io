@@ -133,6 +133,7 @@ function updateTable(projectedWins, teamName, teamLogo) {
   let selectRow3 = document.createElement('tr');
   let selectRow4 = document.createElement('tr');
   let showName = document.createElement('td');
+  // showPic for team logo image
   let showPic = document.createElement('td');
   let selectCell = document.createElement('td');
   let showOutcome = document.createElement('td');
@@ -141,7 +142,6 @@ function updateTable(projectedWins, teamName, teamLogo) {
   let playoffs = seasonOutcome(projectedWins);
   showName.innerText = teamName;
   showName.width = "400";
-
   // adjust image
   let teamImageContainer = document.createElement("div");
   let teamImage = document.createElement("img");
